@@ -1,14 +1,13 @@
 <template>
   <div>
-      <h1>{{ $store.state.count }}</h1>
+      <h1>修改密码</h1>
   </div>
 </template>
 
 <script>
+import bus from "../../common/bus";
 export default {
-    props:{
-        count:Number
-    }
+    
 }
 </script>
 

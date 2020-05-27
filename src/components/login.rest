@@ -1,0 +1,4 @@
+http://localhost:8080/api/Springmvc_Maven06/kxd1/selectClass.json HTTP/1.1
+Content-Type: application/json
+
+{"data":{"begintime":"2010-03-23 10:53:28","endtime":"2023-03-23 10:53:28"},"table":"message01"}
