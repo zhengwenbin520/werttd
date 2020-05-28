@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="page">
     <div class="crumbs">
       <el-breadcrumb separator="/">
         <el-breadcrumb-item>
@@ -81,11 +81,11 @@
         ></el-pagination>
       </div>
       <!-- 添加 -->
-      <el-form :model="ta" ref="ta" class="asa" :rules="rules">
+      <el-form :model="ta" ref="ta" class="asa"  :rules="rules" >
         <el-dialog
           :title="dialogTitle"
           :close-on-click-modal="false"
-          style="margin: auto;overflow:hidden;width:900px"
+          style="margin: auto;overflow:hidden;width:900px;"
           :show-close="show"
           :visible.sync="passVisible"
         >
@@ -282,7 +282,10 @@ export default {
     },
     //  批量删除
     delAllSelection() {
-      this.$confirm(
+      if (this.multipleSelection==0) {
+        this.$message.error(`请选中后！！在删除！！！`);
+      }else{
+         this.$confirm(
         "此操作将删除[" + this.multipleSelection.length + "]条数据,是否继续？",
         "提示",
         {
@@ -292,20 +295,16 @@ export default {
         }
       )
         .then(() => {
-          var ids = "";
-          for (var i = 0; i < this.multipleSelection.length; i++) {
-            ids += this.multipleSelection[i].id + ",";
-          }     
-
-          let par = {
-            dataist:{
-              user:{
-                id:ids
-              }
-            },
-            table:"message01s",
-            code: this.code
+          let ids = [];
+          for (let i = 0; i < this.multipleSelection.length; i++) {
+             ids.push(this.multipleSelection[i].id);
           }
+          let par = {
+            dataLists: ids,
+            table: "message01_s",
+            code: this.code
+          };
+          
           let _this = this;
           _this
             .postRequest("/Springmvc_Maven06/kxd1/delateClass.json", par)
@@ -318,6 +317,8 @@ export default {
             });
         })
         .catch(() => {});
+      }
+     
     },
     //  编辑
     handleEdit(row) {
@@ -446,5 +447,8 @@ h3 {
   text-align: center;
   font-weight: bold;
   margin-top: -10px;
+}
+#page .el-dialog__body{
+  background-color: aqua;
 }
 </style>
