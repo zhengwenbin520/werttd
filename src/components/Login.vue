@@ -43,7 +43,7 @@ export default {
         table: "user01",
         userid: "",
         username: "",
-        password: ""
+        password: "",
       },
 
       rules: {
@@ -62,7 +62,8 @@ export default {
         data: {
           userid: _this.param.userid,
           username: _this.param.username,
-          password: _this.param.password
+          password: _this.param.password,
+          usertype:_this.param.usertype
         },
         message: _this.param.message,
         table: _this.param.table
@@ -74,11 +75,14 @@ export default {
             .postRequest("/Springmvc_Maven06/kxd1/login.json", par)
             .then(result => {
               if (result && result.data.code == 1) {
+                console.log(result)
                 const params = {
                   userid: result.data.data.userid,
                   username: result.data.data.username,
-                  token: result.data.token
+                  token: result.data.token,
+                  usertype:result.data.data.usertype
                 };
+                console.log(result.data.data.usertype)
                 this.login(params)
                 this.$router.push("/dashboard");       
               } else {

@@ -55,10 +55,12 @@ const i18n = new VueI18n({
 const token =  Cookies.get('token') || '';
 const userid =  Cookies.get('userid') || '';
 const username =  Cookies.get('username') || '';
+const usertype = Cookies.get('usertype') || '';
 const params = {
     token,
     userid,
-    username
+    username,
+    usertype
 }
 if(token) store.commit('login',params)
 //使用钩子函数对路由进行权限跳转

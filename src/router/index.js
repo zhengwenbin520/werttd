@@ -56,6 +56,16 @@ export default new Router({
           component: () => import('../components/user/updatepassword.vue'),
           meta: { title: '修改密码' }
         },
+        {
+          path: '/pre',
+          component: () => import('../components/car/carindex/Pre.vue'),
+          meta: { title: '前置' }
+        },
+        {
+          path: '/rear',
+          component: () => import('../components/car/carindex/Rear.vue'),
+          meta: { title: '后置' }
+        },
       ]
     },
     {

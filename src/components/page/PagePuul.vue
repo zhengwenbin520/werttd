@@ -448,7 +448,7 @@ h3 {
   font-weight: bold;
   margin-top: -10px;
 }
-#page .el-dialog__body{
-  background-color: aqua;
+.el-form-item {
+  text-align: left;
 }
 </style>

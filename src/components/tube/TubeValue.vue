@@ -1,6 +1,6 @@
 <template>
   <div>
-      <h1>管栏</h1>
+      <h1>{{this.$store.state.usertype }}</h1>
   </div>
 </template>
 

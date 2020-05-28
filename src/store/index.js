@@ -12,7 +12,8 @@ export default new Vuex.Store({
   state:{
       userid:'',
       username:'',
-      token:''
+      token:'',
+      usertype:''
   },
   // //改变状态的方法
   mutations:{
@@ -21,18 +22,22 @@ export default new Vuex.Store({
       state.token = params.token || '';
       state.username = params.username || '';
       state.userid = params.userid || '';
+      state.usertype = params.usertype || '';
       Cookies.set('token', params.token, { expires: EXPRIES,path:PATH,domain:DOMAIN });
       Cookies.set('username', params.username, { expires: EXPRIES,path:PATH,domain:DOMAIN });
       Cookies.set('userid', params.userid, { expires: EXPRIES,path:PATH,domain:DOMAIN });
+      Cookies.set('usertype',params.usertype, { expires: EXPRIES,path:PATH,domain:DOMAIN })
     },
     //注销
     logout(state,params){
       state.token =  params.token;
       state.username =  params.username;
       state.userid =   params.userid;
+      state.usertype = params.usertype;
       Cookies.set('token', params.token, { expires: EXPRIES,path:PATH,domain:DOMAIN });
       Cookies.set('username', params.username, { expires: EXPRIES,path:PATH,domain:DOMAIN });
       Cookies.set('userid', params.userid, { expires: EXPRIES,path:PATH,domain:DOMAIN });
+      Cookies.set('usertype',params.usertype, { expires: EXPRIES,path:PATH,domain:DOMAIN })
     },
   },
 })
