@@ -123,7 +123,7 @@ export default {
           title: "注销"
      }
        
-      ]
+      ]     
     };
   },
   
@@ -135,6 +135,7 @@ export default {
   },
   methods:{
     getItems(){
+      
       const isshow = this.$store.state.usertype;
       if (isshow == true) {
         console.log(this.items)
