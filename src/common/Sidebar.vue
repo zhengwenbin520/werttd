@@ -11,7 +11,7 @@
       router
       
     >
-      <template v-for="item in items" :v-if="true==item.isshowe">
+      <template v-for="item in items">
         <template v-if="item.subs">
           <el-submenu :index="item.index"  :key="item.index">
             <template slot="title">
@@ -55,13 +55,11 @@ export default {
           index: "dashboard",
           title: "系统首页",
           isshow:true,
-          isss:true,
         },
          {
           icon: "el-icon-location-information",
           index: "map",
-          isshow:false,
-          isss:true,
+          isshow:true,
           title: "地图"
         },
         {
@@ -135,13 +133,26 @@ export default {
     },
   
   },
-
-  created() {
+  methods:{
+    getItems(){
+      const isshow = this.$store.state.usertype;
+      if (isshow == true) {
+        console.log(this.items)
+        return this.items
+      }else{
+        if (this.items.length>0) {
+          
+        }
+      }
+    }
+  },
+  mounted() {
     // 通过 Event Bus 进行组件间通信，来折叠侧边栏
     bus.$on("collapse", msg => {
       this.collapse = msg;
       bus.$emit("collapse-content", msg);
     });
+    this.getItems();
   }
 };
 </script>
