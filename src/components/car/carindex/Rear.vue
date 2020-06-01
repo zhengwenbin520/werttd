@@ -172,7 +172,7 @@
 </template>
 
 <script>
-import bus from "../../common/bus";
+import bus from "../../../common/bus";
 import moment from "moment";
 export default {
   data() {

@@ -9,10 +9,11 @@
       active-text-color="#20a0ff"
       unique-opened
       router
+      
     >
       <template v-for="item in items">
         <template v-if="item.subs">
-          <el-submenu :index="item.index" :key="item.index">
+          <el-submenu :index="item.index"  :key="item.index">
             <template slot="title">
               <i :class="item.icon"></i>
               <span slot="title">{{ item.title }}</span>
@@ -43,6 +44,7 @@
 
 <script>
 import bus from "../common/bus";
+import { mapState } from 'vuex';
 export default {
   data() {
     return {
@@ -51,70 +53,108 @@ export default {
         {
           icon: "el-icon-setting",
           index: "dashboard",
-          title: "系统首页"
+          title: "系统首页",
+          isshow:true,
         },
          {
           icon: "el-icon-location-information",
           index: "map",
+          isshow:true,
           title: "地图"
         },
         {
           icon: "el-icon-suitcase",
           index: "table",
+          isshow:true,
           title: "肩背"
         },
         {
           icon: "el-icon-truck",
           index: "tabs",
-          title: "车载"
+          isshow:true,
+          title: "车载",
+           subs: [
+            {
+              index: "pre",
+              title: "前置",
+              isshow:true,
+            },
+            {
+              index: "rear",
+              title: "后置",
+              isshow:true,
+            }
+          ]
         },
         {
           icon: "el-icon-s-cooperation",
           index: "3",
+          isshow:true,
           title: "手持"
         },
         {
           icon: "el-icon-turn-off",
           index: "icon",
+          isshow:true,
           title: "管栏"
         },
         {
           icon: "el-icon-user",
           index: "6",
           title: "用户管理",
+          isshow:true,
           subs: [
             {
               index: "drag",
-              title: "修改密码"
+              title: "修改密码",
+              isshow:true,
             },
             {
               index: "dialog",
-              title: "个人信息"
+              title: "个人信息",
+              isshow:true,
             }
           ]
         },
         {
           icon: "el-icon-pie-chart",
           index: "charts",
+          isshow:true,
           title: "注销"
      }
        
-      ]
+      ]     
     };
   },
   
   computed: {
     onRoutes() {
         return this.$route.path.replace("/", "");
+    },
+  
+  },
+  methods:{
+    getItems(){
+      
+      const isshow = this.$store.state.usertype;
+      if (isshow == true) {
+        console.log(this.items)
+        return this.items
+      }else{
+        if (this.items.length>0) {
+          
+        }
+      }
     }
   },
-  created() {
+  mounted() {
     // 通过 Event Bus 进行组件间通信，来折叠侧边栏
     // 77777777
     bus.$on("collapse", msg => {
       this.collapse = msg;
       bus.$emit("collapse-content", msg);
     });
+    this.getItems();
   }
 };
 </script>
