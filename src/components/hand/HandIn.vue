@@ -12,6 +12,7 @@
         <el-button
           id="budele"
           type="primary"
+          :disabled="display"
           icon="el-icon-delete"
           class="handle-del mr10"
           @click="delAllSelection"
@@ -36,7 +37,7 @@
           :disabled="disabled"
           @click="handleSearch"
         >搜索</el-button>
-        <el-button type="primary" class="button-excle" icon="el-icon-plus" @click="exportFile">导出数据</el-button>
+        <!-- <el-button type="primary" class="button-excle" icon="el-icon-plus" @click="exportFile">导出数据</el-button> -->
       </div>
       <el-table
         v-loading="loading"
@@ -58,12 +59,13 @@
         <el-table-column prop="ch4" label="甲烷浓度" align="center"></el-table-column>
         <el-table-column label="操作" width="180" align="center">
           <template slot-scope="scope">
-            <el-button type="text" icon="el-icon-edit" @click="handleEdit(scope.row)">编辑</el-button>
+            <el-button type="text" icon="el-icon-edit" :disabled="display" @click="handleEdit(scope.row)">编辑</el-button>
             <el-button
               type="text"
               icon="el-icon-delete"
               class="red"
               @click="handleDelete(scope.row)"
+              :disabled="display"
             >删除</el-button>
           </template>
         </el-table-column>
@@ -177,6 +179,7 @@ import moment from "moment";
 export default {
   data() {
     return {
+      display:false,
       multipleSelection: [],
       loading: false,
       ta: {
@@ -234,6 +237,13 @@ export default {
       }
     }
   },
+  created(){
+    const dis = this.$store.state.usertype;
+    if(dis==false){
+      //alert(111)
+       return this.display = true
+    }
+  },
   methods: {
     //  清空
     disreCliear() {
@@ -282,6 +292,7 @@ export default {
     },
     //  批量删除
     delAllSelection() {
+      
       if (this.multipleSelection==0) {
         this.$message.error(`请选中后！！在删除！！！`);
       }else{

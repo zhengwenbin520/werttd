@@ -39,5 +39,7 @@ export default new Vuex.Store({
       Cookies.set('userid', params.userid, { expires: EXPRIES,path:PATH,domain:DOMAIN });
       Cookies.set('usertype',params.usertype, { expires: EXPRIES,path:PATH,domain:DOMAIN })
     },
+
+   
   },
 })
