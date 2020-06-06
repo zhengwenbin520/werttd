@@ -53,7 +53,7 @@ export default {
     };
   },
   methods: {
-    ...mapMutations(["login"]),
+    ...mapMutations(['login']),
      submitForm() {
       var _this = this;
       let par = {
@@ -82,8 +82,7 @@ export default {
                   token: result.data.token,
                   usertype:result.data.data.usertype
                 };
-                console.log(result.data.data.usertype)
-                this.login(params)
+                this.login(params)                            
                 this.$router.push("/dashboard");       
               } else {
                 this.$message.error(result.data.message);

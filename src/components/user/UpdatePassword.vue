@@ -1,6 +1,6 @@
 <template>
   <div>
-      <h1>修改密码</h1>
+      <h1>{{this.$store.state.token}}</h1>
   </div>
 </template>
 

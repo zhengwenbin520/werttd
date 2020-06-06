@@ -81,7 +81,7 @@ export default {
             },
             {
               index: "rear",
-              title: "后置",
+              title: "顶置",
               isshow:true,
             }
           ]
@@ -136,15 +136,6 @@ export default {
   methods:{
     getItems(){
       
-      const isshow = this.$store.state.usertype;
-      if (isshow == true) {
-        console.log(this.items)
-        return this.items
-      }else{
-        if (this.items.length>0) {
-          
-        }
-      }
     }
   },
   mounted() {

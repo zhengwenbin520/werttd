@@ -3,10 +3,14 @@ import {
   Message
 } from 'element-ui'
 import qs from 'qs'
+import store from '../store'
 
 // ---------------------------------------------------------------------------------------
+
 axios.defaults.headers = {
-  'Content-Type': 'application/json',
+  'Content-Type': 'application/json;charset=utf-8',
+   token:store.state.token
+  
 }
 axios.interceptors.request.use(config => {
   return config;
