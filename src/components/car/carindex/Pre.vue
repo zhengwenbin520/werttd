@@ -361,7 +361,7 @@ export default {
         ch4: row.ch4
       });
     },
-    //  删除
+    // 删除
     handleDelete(row) {
       //删除
       this.$confirm("此操作将永久删除,是否继续？", "提示", {
