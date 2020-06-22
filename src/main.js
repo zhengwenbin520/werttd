@@ -67,43 +67,43 @@ if (token) store.commit('login', params)
 
 
 // 路由 login => path   好了。。。
-// const whiteList = "/login";
-// router.beforeEach((to, from, next) => {
-//     document.title = `${to.meta.title} | vue-manage-system`;
-//     const role = store.state.token;
-//   if (!role) {
-//     if (whiteList === to.path) {
-//       next();
-//     } else {
-//       next();
-//       console.log(11111111111111111)
-//       router.replace({ path: whiteList + `?redirect=${to.path}` });
-//     }
-//   } else {
-//     if (whiteList !== to.path) {
-//         next();
-        
-//       } else {
-//         next();
-//         router.replace(from.fullPath);
-//       }
-//   }
-// });
-const whiteList = "/login"
+const whiteList = "/login";
 router.beforeEach((to, from, next) => {
-  document.title = `${to.meta.title} | vue-manage-system`;
-  const role = store.state.token
-  if (!role ) {
-      if (whiteList === to.path) {
-        next()
-      }else{
-        router.replace({path:whiteList + `?redirect=${to.path}`})
+    document.title = `${to.meta.title} | vue-manage-system`;
+    const role = store.state.token;
+  if (!role) {
+    if (whiteList === to.path) {
+      next();
+    } else {
+      next();
+      console.log(11111111111111111)
+      router.replace({ path: whiteList + `?redirect=${to.path}` });
+    }
+  } else {
+    if (whiteList !== to.path) {
+        next();
+        
+      } else {
+        next();
+        router.replace(from.fullPath);
       }
-  }else{ 
-    next();
   }
-
 });
+// const whiteList = "/login"
+// router.beforeEach((to, from, next) => {
+//   document.title = `${to.meta.title} | vue-manage-system`;
+//   const role = store.state.token
+//   if (!role ) {
+//       if (whiteList === to.path) {
+//         next()
+//       }else{
+//         router.replace({path:whiteList + `?redirect=${to.path}`})
+//       }
+//   }else{ 
+//     next();
+//   }
+
+// });
 
 // router.beforeEach((to, from, next) => {
 //     document.title = `${to.meta.title} | vue-manage-system`;

@@ -59,7 +59,13 @@ axios.interceptors.response.use(data => {
   }
   // return Promise.resolve(err);
 })
-let base = '/api';
+let base = null;
+const NODE_ENV = process.env. NODE_ENV
+if (NODE_ENV === 'development') {
+  base = '/api'
+}else{
+  base = 'http://39.96.178.102:8080';
+}
 export const postRequest = (url, params) => {
   return axios({
     method: 'post',

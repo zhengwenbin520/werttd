@@ -3,7 +3,7 @@
     <div class="crumbs">
       <el-breadcrumb separator="/">
         <el-breadcrumb-item>
-          <i class="el-icon-present"></i>肩背
+          <i class="el-icon-present"></i>管栏
         </el-breadcrumb-item>
       </el-breadcrumb>
     </div>

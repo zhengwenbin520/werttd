@@ -1,7 +1,8 @@
 <template>
   <div class="aa">
+    <div class="my-heger">谱敏光电数据管理</div>
     <div class="ms-login">
-      <div class="ms-title">后台管理系统</div>
+      <div class="ms-title"></div>
       <el-form :model="param" :rules="rules" ref="login" label-width="0px" class="ms-content">
         <el-form-item prop="userid">
           <el-input v-model="param.userid" placeholder="userid" maxlength="10" show-word-limit>
@@ -98,11 +99,17 @@ export default {
 </script>
 
 <style scoped>
+.my-heger{
+  text-align: center;
+  padding-top: 100px;
+  font-size: 30px;
+  font-weight: bolder;
+}
 .aa {
   position: relative;
   width: 100%;
   height: 100%;
-  background: url(../assets/img/login-bg.jpg) no-repeat;
+  /* background: url(../assets/img/login-bg.jpg) no-repeat; */
   background-size: 100% 100%;
   overflow: hidden;
 }
@@ -113,6 +120,8 @@ export default {
   font-size: 20px;
   color: #fff;
   border-bottom: 1px solid #ddd;
+  height: 40px;
+  background-color: thistle;
 }
 .ms-login {
   position: absolute;
@@ -126,6 +135,7 @@ export default {
 }
 .ms-content {
   padding: 30px 30px;
+  background-color: thistle;
 }
 .login-btn {
   text-align: center;

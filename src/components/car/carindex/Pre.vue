@@ -3,7 +3,7 @@
     <div class="crumbs">
       <el-breadcrumb separator="/">
         <el-breadcrumb-item>
-          <i class="el-icon-present"></i>肩背
+          <i class="el-icon-present"></i>前置
         </el-breadcrumb-item>
       </el-breadcrumb>
     </div>
@@ -29,6 +29,7 @@
           placeholder="选择日期时间"
           default-time="12:00:00"
         ></el-date-picker>
+        <span>设备号:</span>
         <el-button
           type="primary"
           id="bindex"
@@ -51,6 +52,7 @@
       >
         <el-table-column type="selection" width="55" align="center"></el-table-column>
         <el-table-column prop="taskid" label="任务值" width="60px" align="center"></el-table-column>
+        <el-table-column prop="deviceid" label="设备号" align="center"></el-table-column>
         <el-table-column prop="time" label="时间毫秒数" align="center"></el-table-column>
         <el-table-column prop="datetime" label="日期" align="center"></el-table-column>
         <el-table-column prop="longitude" label="经度" align="center"></el-table-column>
@@ -96,6 +98,16 @@
             <el-input
               v-model="ta.taskid"
               placeholder="任务值"
+              clearable
+              maxlength="11"
+              show-word-limit
+              style="width: 250px"
+            ></el-input>
+          </el-form-item>
+            <el-form-item label="设备号" prop="deviceid">
+            <el-input
+              v-model="ta.deviceid"
+              placeholder="设备号"
               clearable
               maxlength="11"
               show-word-limit
@@ -185,6 +197,7 @@ export default {
       ta: {
         id: "",
         taskid: "",
+        deviceid:'',
         time: "",
         datetime: "",
         longitude: "",
@@ -198,12 +211,13 @@ export default {
       passVisible: false, //  是否打开模态框
       show: false, //  是模态框的×隐藏
       rules: {}, //  验证规则
-      table: "message01", //  表
+      table: "Front_Message", //  表
       disabled: true, //   表里面的数据
       list: [],
       //   清空
       listCliear: {
         taskid: "",
+        deviceid:"",
         time: "",
         datetime: "",
         longitude: "",
@@ -249,6 +263,7 @@ export default {
       this.listCliear = {
         taskid: "",
         time: "",
+        deviceid:"",
         mody: "",
         longitude: "",
         latitude: "",
@@ -270,7 +285,7 @@ export default {
         table: this.table
       };
       this.loading = true;
-      this.postRequest("/Springmvc_Maven06/kxd1/selectClass.json", par).then(
+      this.postRequest("/Springmvc_Maven06/kxd/selectClass.json", par).then(
         result => {
           if (result && result.data.code == 1) {
             this.list = result.data.data.list; //  这个是我想要的
@@ -311,13 +326,13 @@ export default {
           }
           let par = {
             dataLists: ids,
-            table: "message01_s",
+            table: "Front_Messages",
             code: this.code
           };
           
           let _this = this;
           _this
-            .postRequest("/Springmvc_Maven06/kxd1/delateClass.json", par)
+            .postRequest("/Springmvc_Maven06/kxd/delateClass.json", par)
             .then(result => {
               if (result && result.data.code == 1) {
                 _this.handleSearch();
@@ -336,6 +351,7 @@ export default {
       this.passVisible = true;
       Object.assign(this.ta, {
         id: row.id,
+        deviceid:row.deviceid,
         taskid: row.taskid,
         time: row.time,
         datetime: row.datetime,
@@ -359,11 +375,11 @@ export default {
             data: {
               id: row.id
             },
-            table: this.table,
+            table: "Front_Messages",
             code: this.code
           };
           _this
-            .postRequest("/Springmvc_Maven06/kxd1/delateClass.json", par)
+            .postRequest("/Springmvc_Maven06/kxd/delateClass.json", par)
             .then(result => {
               if (result && result.data.code == 1) {
                 _this.handleSearch();
